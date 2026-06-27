@@ -1,0 +1,70 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
+import { siteConfig } from "@/config/site";
+import { motion, AnimatePresence } from "framer-motion";
+
+export function WhatsAppFloat() {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const isMobile = window.innerWidth < 768;
+        if (isMobile) {
+          setIsVisible(!entry.isIntersecting);
+        } else {
+          setIsVisible(true);
+        }
+      },
+      {
+        root: null,
+        threshold: 0.05,
+      }
+    );
+
+    observer.observe(footer);
+
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 768;
+      if (!isMobile) {
+        setIsVisible(true);
+      } else {
+        const rect = footer.getBoundingClientRect();
+        const isInViewport = rect.top < window.innerHeight;
+        setIsVisible(!isInViewport);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {isVisible && (
+        <motion.a
+          href={siteConfig.whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.2 }}
+          className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 hover:bg-[#1ebe57] transition-all duration-300 flex items-center justify-center group"
+          aria-label="Contato pelo WhatsApp"
+        >
+          <WhatsAppIcon className="w-8 h-8" />
+        </motion.a>
+      )}
+    </AnimatePresence>
+  );
+}

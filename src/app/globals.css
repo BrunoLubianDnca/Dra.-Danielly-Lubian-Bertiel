@@ -1,0 +1,229 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Design Tokens da Marca DL (Minimalista & Premium) ── */
+  --color-background:             #FDFBF7; /* Fundo minimalista branco/creme suave */
+  --color-foreground:             #2A1F18; /* Texto escuro garantindo contraste total no fundo claro */
+  
+  --color-terra:                  #A15734; /* Cor principal de marca (para backgrounds de seções e destaques) */
+  --color-primary:                #A15734; /* Variação da base (botões, ações) */
+  --color-primary-hover:          #8A482A; 
+  
+  --color-cream:                  #FDFBF7; /* Fundo claro para leitura */
+  --color-accent:                 #D4AF37; /* Destaque dourado (luxo/CTA) */
+  --color-card:                   #FFFFFF; /* Fundo mais puro/suave para blocos/UI */
+  
+  /* Mantendo variações de compatibilidade para não quebrar componentes existentes */
+  --color-terra-dark:             #7A3F27;
+  --color-terra-light:            #C47353;
+  --color-terra-button:           #8A482A;
+  --color-cream-light:            #FFFFFF; /* Garantindo cor clara absoluta nos botões */
+  --color-cream-text:             #FFFFFF; /* Branco absoluto para textos em fundo escuro */
+  --color-sand:                   #E9D8C5;
+  --color-brown:                  #4A2B20;
+  --color-gold:                   #D4AF37;
+  --color-surface:                var(--color-card);
+  --color-border:                 rgba(42, 31, 24, 0.1); /* Borda escura translúcida no fundo claro */
+  --color-muted:                  rgba(42, 31, 24, 0.6);
+
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans:  "Inter", system-ui, sans-serif;
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  line-height: 1.15;
+  font-weight: 500;
+}
+
+p { line-height: 1.6; }
+
+/* ── Utilitários de Seção ── */
+.section-padding {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+@media (min-width: 1024px) {
+  .section-padding { padding-top: 6rem; padding-bottom: 6rem; }
+}
+
+/* ── Botões Premium ── */
+.btn-premium {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-terra-button);
+  color: var(--color-cream-light);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(179, 95, 50, 0.25);
+}
+.btn-premium:hover {
+  background-color: var(--color-terra-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(179, 95, 50, 0.3);
+}
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #25D366;
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.25);
+}
+.btn-whatsapp:hover {
+  background-color: #1EBE57;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-primary);
+  color: white;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 12px;
+  border: 1px solid var(--color-primary);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+.btn-outline-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  color: var(--color-cream-text);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 12px;
+  border: 1px solid rgba(248, 235, 221, 0.4);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: white;
+}
+
+.btn-outline-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  color: var(--color-primary);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 6px;
+  border: 1px solid var(--color-primary);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-outline-dark:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* ── Cards do Mockup ── */
+.card-objective {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.75rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+@media (min-width: 1024px) {
+  .card-objective { padding: 2.5rem; }
+}
+.card-objective:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(164, 91, 62, 0.08);
+  border-color: rgba(164, 91, 62, 0.3);
+}
+
+.card-testimonial {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+/* ── Labels (SUTIS) ── */
+.text-label {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+.text-label-light {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ── Utilitários ── */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
