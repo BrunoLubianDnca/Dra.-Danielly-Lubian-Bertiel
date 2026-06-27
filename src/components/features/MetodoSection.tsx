@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion as motionFramer } from "framer-motion";
-import { ClipboardList, Target, TrendingUp, Star, Check, Leaf, CalendarCheck } from "lucide-react";
+import { ClipboardList, Target, TrendingUp, Star, Check, Leaf, CalendarCheck, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
 const steps = [
@@ -61,6 +61,20 @@ const stepTransforms = [
 
 export function MetodoSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number>(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Track active card on mobile scroll
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const handleScroll = () => {
+      const cardWidth = el.scrollWidth / steps.length;
+      const idx = Math.round(el.scrollLeft / cardWidth);
+      setHoveredIndex(Math.min(idx, steps.length - 1));
+    };
+    el.addEventListener("scroll", handleScroll, { passive: true });
+    return () => el.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const whatsappNumber = "554791129634";
   const whatsappMessage = "Olá! Vim do site e gostaria de saber mais sobre o Método Florescer.";
@@ -135,7 +149,10 @@ export function MetodoSection() {
           </div>
 
           {/* Passos com Linhas de Conexão e Cards */}
-          <div className="relative flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-6 sm:pb-0 z-10 pt-16 -mx-6 px-6 sm:mx-0 sm:px-0">
+          <div
+            ref={scrollRef}
+            className="relative flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-6 sm:pb-0 z-10 pt-16 -mx-6 px-6 sm:mx-0 sm:px-0"
+          >
 
             {/* Linhas de conexão com setas (Desktop) - Maior contraste */}
             <div className="hidden lg:flex items-center absolute top-[104px] left-[16%] w-[18%] -z-10">
@@ -256,6 +273,46 @@ export function MetodoSection() {
               );
             })}
           </div>
+
+          {/* Dots de paginação — apenas mobile */}
+          <div className="flex sm:hidden items-center justify-center gap-2 mt-2 mb-2">
+            {steps.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  setHoveredIndex(i);
+                  if (scrollRef.current) {
+                    const cardWidth = scrollRef.current.scrollWidth / steps.length;
+                    scrollRef.current.scrollTo({ left: cardWidth * i, behavior: "smooth" });
+                  }
+                }}
+                className={`transition-all duration-300 rounded-full ${
+                  hoveredIndex === i
+                    ? "w-5 h-2 bg-white"
+                    : "w-2 h-2 bg-white/30"
+                }`}
+                aria-label={`Etapa ${i + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Hint de swipe — apenas mobile, some após interação */}
+          {hoveredIndex === 0 && (
+            <motionFramer.div
+              className="flex sm:hidden items-center justify-center gap-1 text-white/50 text-[11px] font-sans mt-1"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 1, 1, 0] }}
+              transition={{ duration: 3, times: [0, 0.2, 0.8, 1], delay: 1 }}
+            >
+              <span>deslize para ver mais</span>
+              <motionFramer.div
+                animate={{ x: [0, 5, 0] }}
+                transition={{ repeat: Infinity, duration: 1.2 }}
+              >
+                <ChevronRight className="w-3.5 h-3.5" />
+              </motionFramer.div>
+            </motionFramer.div>
+          )}
 
           {/* Badge Centralizado na Base */}
           <div className="flex justify-center mt-6">

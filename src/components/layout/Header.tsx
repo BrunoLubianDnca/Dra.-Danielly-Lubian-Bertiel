@@ -42,11 +42,11 @@ export function Header() {
               className="object-contain filter brightness-0 invert shrink-0"
               priority
             />
-            <div className="hidden sm:block border-l border-cream-text/30 pl-4">
-              <span className="block font-serif text-[11px] font-semibold tracking-[0.15em] uppercase text-white">
+            <div className="border-l border-cream-text/30 pl-4">
+              <span className="block font-serif text-[9px] sm:text-[11px] font-semibold tracking-[0.12em] sm:tracking-[0.15em] uppercase text-white leading-tight">
                 Dra. Danielly Lubian Bertiel
               </span>
-              <span className="block font-sans text-[10px] text-white">
+              <span className="block font-sans text-[9px] sm:text-[10px] text-white/80">
                 CRM/SC 33815
               </span>
             </div>
