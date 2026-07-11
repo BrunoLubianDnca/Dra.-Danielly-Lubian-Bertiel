@@ -80,6 +80,7 @@ const saudeOptions = [
   "Refluxo",
   "Constipação",
   "Queda de cabelo",
+  "Nenhum dos anteriores",
 ];
 
 const comportamentoStatements = [

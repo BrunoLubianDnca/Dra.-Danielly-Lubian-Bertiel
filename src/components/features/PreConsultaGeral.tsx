@@ -69,6 +69,7 @@ const historicoOptions = [
   "Câncer",
   "Cirurgias",
   "Uso contínuo de medicamentos",
+  "Nenhum dos anteriores",
 ];
 
 export default function PreConsultaGeral() {
@@ -613,7 +614,7 @@ export default function PreConsultaGeral() {
                   </p>
                   <div className="h-[1px] bg-border/10 w-full mb-6" />
 
-                  <div className="flex flex-col gap-5 overflow-y-auto max-h-[380px] pr-2">
+                  <div className="flex flex-col gap-5 pb-4">
                     {/* Checklist Histórico */}
                     <div>
                       <label className="font-sans text-[10px] font-bold text-foreground/80 uppercase block mb-3">Histórico pessoal:</label>
