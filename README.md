@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Próximos Passos para Lançamento do Site
 
-## Getting Started
+Este documento detalha os passos finais necessários para configurar e publicar o site da Dra. Danielly Lubian Bertiel de forma 100% profissional usando seu domínio próprio.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📋 1. Apontar o Domínio Próprio na Vercel
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Você já comprou o domínio (ex: `dradaniellylubian.com.br`). Agora, siga os passos abaixo para vinculá-lo ao seu projeto Vercel:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Acesse o painel da **Vercel** e abra o projeto do site.
+2. Vá na aba **Settings (Configurações)** ➔ **Domains (Domínios)**.
+3. Insira o seu domínio próprio e clique em **Add (Adicionar)**.
+4. A Vercel exibirá os registros DNS que precisam ser criados (geralmente um registro do tipo `A` e outro do tipo `CNAME`).
+5. Acesse o painel da empresa onde você comprou o domínio (ex: Registro.br, HostGator, GoDaddy, etc.) e adicione esses registros na tabela DNS correspondente.
+6. Aguarde a propagação do DNS (costuma demorar de alguns minutos a poucas horas). A Vercel ativará o certificado de segurança SSL (HTTPS) de forma automática.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🔒 2. Configurar as Variáveis de Ambiente na Vercel
 
-To learn more about Next.js, take a look at the following resources:
+Para que o banco de dados oficial e o sistema de notificações por e-mail de pré-consulta funcionem em produção:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. No dashboard do seu projeto na **Vercel**, vá em **Settings (Configurações)** ➔ **Environment Variables (Variáveis de Ambiente)**.
+2. Adicione as 3 variáveis abaixo exatamente como descritas:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Nome da Variável | Valor sugerido / Configuração |
+| :--- | :--- |
+| **`DATABASE_URL`** | `postgresql://postgres:Y0l3OrgIeuRBWVq5@db.ndlygkqzkoezdmchwmrj.supabase.co:5432/postgres` |
+| **`RESEND_API_KEY`** | `re_XD5g6UUJ_LVPHDQdMg8QE3qonH5jUhVRv` |
+| **`NOTIFICATION_EMAIL`** | `brunolubianinfo@gmail.com` *(e-mail que receberá as mensagens das pré-consultas)* |
 
-## Deploy on Vercel
+3. Com as variáveis salvas, acesse a aba **Deployments** no painel da Vercel.
+4. Clique nos três pontinhos à direita do seu último deploy e selecione **Redeploy**. Isso fará o site atualizar e aplicar as chaves configuradas.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📧 3. Validar e Verificar o Domínio no Resend
+
+Atualmente, os e-mails de teste usam o remetente genérico `onboarding@resend.dev`. Para garantir que os e-mails cheguem de forma confiável e profissional na caixa de entrada sem ir para a caixa de Spam:
+
+1. Acesse sua conta no painel do [Resend](https://resend.com).
+2. Vá em **Domains** ➔ **Add Domain**.
+3. Digite o seu domínio próprio (ex: `dradaniellylubian.com.br`).
+4. O Resend gerará alguns registros DNS do tipo **MX** e **TXT** (configurações DKIM e SPF essenciais para autenticidade).
+5. Adicione esses registros no painel da empresa onde você comprou o domínio (a mesma tabela DNS do Passo 1).
+6. Assim que o Resend identificar os registros e mudar o status para **"Verified" (Verificado)**, suas notificações de e-mail funcionarão 100% livres de bloqueios de spam.
