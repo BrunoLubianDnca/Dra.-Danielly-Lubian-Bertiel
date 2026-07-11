@@ -114,7 +114,10 @@ export function GoogleReviewsSection() {
             </div>
 
             {/* Slider de Cartão Único */}
-            <div className="relative flex items-center justify-center gap-3 sm:gap-4 mb-6">
+            <div className="relative flex flex-col items-center gap-4 mb-6">
+              
+              {/* Setas e Card em Row no Desktop, Column no Mobile */}
+              <div className="w-full flex items-center gap-3 sm:gap-4">
               
               {/* Seta Esquerda */}
               <button
@@ -136,18 +139,18 @@ export function GoogleReviewsSection() {
                     transition={{ duration: 0.25, ease: "easeInOut" }}
                     className="flex flex-col justify-between h-full"
                   >
-                    <div className="flex gap-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center font-sans text-base font-bold text-primary shrink-0 select-none">
+                    <div className="flex gap-3">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center font-sans text-base font-bold text-primary shrink-0 select-none">
                         {currentReview.name.charAt(0)}
                       </div>
-                      <div className="flex-1">
-                        <p className="font-sans text-[16px] font-bold text-foreground">
+                      <div className="flex-1 min-w-0">
+                        <p className="font-sans text-[14px] sm:text-[16px] font-bold text-foreground truncate">
                           {currentReview.name}
                         </p>
                         <p className="font-sans text-[10px] text-muted-foreground/80 mt-0.5 uppercase tracking-wider">
                           Google Maps • {currentReview.date}
                         </p>
-                        <p className="font-sans text-[15px] text-foreground/80 italic leading-relaxed mt-2.5">
+                        <p className="font-sans text-[13px] sm:text-[15px] text-foreground/80 italic leading-relaxed mt-2.5 break-words">
                           &ldquo;{displayedText}&rdquo;
                           {shouldTruncate && (
                             <button
@@ -181,6 +184,7 @@ export function GoogleReviewsSection() {
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
+              </div>
 
             </div>
 
