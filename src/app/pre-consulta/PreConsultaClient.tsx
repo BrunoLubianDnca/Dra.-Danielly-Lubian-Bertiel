@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Clock, ChevronRight } from "lucide-react";
 import PreConsultaGeral from "@/components/features/PreConsultaGeral";
 import PreConsultaEmagrecimento from "@/components/features/PreConsultaEmagrecimento";
