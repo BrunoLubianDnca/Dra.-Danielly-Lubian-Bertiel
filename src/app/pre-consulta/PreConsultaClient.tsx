@@ -153,6 +153,3 @@ export default function PreConsultaClient() {
     </div>
   );
 }
-
-// Sub-import wrapper for AnimatePresence
-import { AnimatePresence } from "framer-motion";
