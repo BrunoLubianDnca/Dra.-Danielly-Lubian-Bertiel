@@ -45,3 +45,30 @@ Atualmente, os e-mails de teste usam o remetente genérico `onboarding@resend.de
 4. O Resend gerará alguns registros DNS do tipo **MX** e **TXT** (configurações DKIM e SPF essenciais para autenticidade).
 5. Adicione esses registros no painel da empresa onde você comprou o domínio (a mesma tabela DNS do Passo 1).
 6. Assim que o Resend identificar os registros e mudar o status para **"Verified" (Verificado)**, suas notificações de e-mail funcionarão 100% livres de bloqueios de spam.
+
+---
+
+## ✍️ 4. Como Escrever Novos Posts no Blog
+
+O blog está configurado para ler arquivos de texto Markdown (`.md`) da pasta `/posts` na raiz do projeto de forma 100% gratuita.
+
+Para publicar um novo artigo:
+1. Crie um novo arquivo na pasta `/posts` terminado com `.md` (ex: `posts/como-regular-o-sono.md`).
+2. Adicione os metadados (cabeçalho) no início do arquivo e depois escreva o texto abaixo dele, seguindo este modelo exato:
+
+```markdown
+---
+title: "Título do Post Aqui"
+date: "2026-07-11"
+summary: "Um breve resumo de uma ou duas frases sobre o assunto do artigo."
+image: "/perfil01.jpeg"
+readTime: "5 min"
+---
+
+Aqui você escreve o corpo do seu texto. Pode usar títulos com ## para criar tópicos:
+
+## 1. Primeiro Tópico Importante
+Texto do tópico aqui.
+```
+
+3. Salve, faça commit das alterações para o GitHub (`git add .`, `git commit` e `git push`) e a Vercel publicará o novo post automaticamente em alguns segundos.
