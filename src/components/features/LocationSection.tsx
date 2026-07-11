@@ -23,7 +23,7 @@ export function LocationSection() {
             transition={{ duration: 0.6 }}
             className="flex flex-col text-white"
           >
-            <h2 className="font-serif text-4xl sm:text-5xl font-medium mb-12">
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium mb-12">
               Onde me encontrar?
             </h2>
 
@@ -75,7 +75,7 @@ export function LocationSection() {
             className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-auto lg:h-[450px]"
           >
             {/* Foto do Edifício */}
-            <div className="relative h-[300px] sm:h-full rounded-3xl overflow-hidden border-4 border-white/10 shadow-2xl select-none group">
+            <div className="relative h-[220px] sm:h-full rounded-3xl overflow-hidden border-4 border-white/10 shadow-2xl select-none group">
               <Image 
                 src="/connect-office.png" 
                 alt="Edifício Connect Office" 
@@ -92,7 +92,7 @@ export function LocationSection() {
             </div>
 
             {/* Mapa do Google */}
-            <div className="h-[300px] sm:h-full bg-white rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10">
+            <div className="h-[220px] sm:h-full bg-white rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10">
               <iframe 
                 src="https://maps.google.com/maps?q=Dra+Danielly+Lubian+Bertiel,+Blumenau+-+SC&t=&z=16&ie=UTF8&iwloc=&output=embed" 
                 width="100%" 

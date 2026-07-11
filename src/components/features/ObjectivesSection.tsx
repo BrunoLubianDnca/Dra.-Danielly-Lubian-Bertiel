@@ -65,7 +65,7 @@ export function ObjectivesSection() {
                   <h3 className="font-serif text-[17px] font-medium text-foreground mb-3">
                     {obj.title}
                   </h3>
-                  <p className="font-sans text-[15px] text-muted leading-relaxed mb-6 h-20">
+                  <p className="font-sans text-[15px] text-muted leading-relaxed mb-6 min-h-[5rem]">
                     {obj.desc}
                   </p>
                   <div className="mt-auto flex items-center gap-2 font-sans text-[12px] font-medium text-primary group-hover:text-primary-hover transition-colors">

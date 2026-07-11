@@ -85,7 +85,7 @@ export function Header() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 text-white/80 hover:text-white transition-colors"
+            className="lg:hidden p-3 text-white/80 hover:text-white transition-colors"
             aria-label="Menu"
           >
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -119,7 +119,7 @@ export function Header() {
                   href={siteConfig.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-outline-light w-full justify-center"
+                  className="btn-whatsapp w-full justify-center"
                 >
                   <WhatsAppIcon className="w-4 h-4" />
                   Agendar consulta
