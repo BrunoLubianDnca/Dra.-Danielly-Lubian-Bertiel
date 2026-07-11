@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { submitPreConsulta } from "@/app/pre-consulta/actions";
 import { toast } from "sonner";
 import Link from "next/link";
 import Image from "next/image";
@@ -268,6 +269,15 @@ export default function PreConsultaEmagrecimento() {
     const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(msg)}`;
     window.open(url, "_blank");
     setCompleted(true);
+
+    // Salva no banco em segundo plano (silencioso — não bloqueia e não exibe erro)
+    submitPreConsulta({
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      objective: "Emagrecimento",
+      message: msg,
+    }).catch(() => {/* ignorado — banco é backup, WhatsApp é primário */});
   };
 
   const profile = getEatingProfile();
