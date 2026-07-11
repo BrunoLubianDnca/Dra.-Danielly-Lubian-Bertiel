@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function BlogPage() {
   return (
@@ -26,9 +27,9 @@ export default function BlogPage() {
         <p className="text-muted-foreground text-lg mb-8 leading-relaxed max-w-lg">
           Estou preparando conteúdos incríveis sobre saúde, longevidade e performance para você. Volte em breve!
         </p>
-        <a href="/" className="btn-primary">
+        <Link href="/" className="btn-primary">
           Voltar para o Início
-        </a>
+        </Link>
       </div>
     </div>
   );

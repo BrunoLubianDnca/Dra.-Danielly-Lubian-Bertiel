@@ -1,10 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, MessageCircle } from "lucide-react";
 
 // Inline Icon para Instagram caso não esteja na versão do lucide
-function Instagram(props: any) {
+function Instagram(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
@@ -13,36 +12,6 @@ function Instagram(props: any) {
     </svg>
   );
 }
-const instagramPosts = [
-  {
-    id: 1,
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=600",
-    likes: "1.2k",
-    comments: "84",
-    link: "https://www.instagram.com/dradanilubian/",
-  },
-  {
-    id: 2,
-    image: "https://images.unsplash.com/photo-1594824436998-d82224eb9d4c?auto=format&fit=crop&q=80&w=600",
-    likes: "956",
-    comments: "42",
-    link: "https://www.instagram.com/dradanilubian/",
-  },
-  {
-    id: 3,
-    image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&q=80&w=600",
-    likes: "840",
-    comments: "56",
-    link: "https://www.instagram.com/dradanilubian/",
-  },
-  {
-    id: 4,
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=600",
-    likes: "1.5k",
-    comments: "112",
-    link: "https://www.instagram.com/dradanilubian/",
-  },
-];
 
 export function InstagramSection() {
   return (

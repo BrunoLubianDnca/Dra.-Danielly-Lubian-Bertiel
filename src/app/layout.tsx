@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import { GoogleAnalytics } from "@/components/ui/GoogleAnalytics";
 import { Toaster } from "sonner";
 
 const playfair = Playfair_Display({
@@ -92,6 +93,7 @@ const schemaData = {
       name: "Consultório Dra. Danielly Lubian Bertiel",
       url: "https://dradanilubian.com.br",
       logo: "https://dradanilubian.com.br/logo.png",
+      image: "https://dradanilubian.com.br/connect-office.png",
       description:
         "Medicina personalizada para longevidade, emagrecimento e performance metabólica em Santa Catarina.",
       medicalSpecialty: [
@@ -100,7 +102,37 @@ const schemaData = {
         "Performance Metabólica",
         "Medicina Preventiva",
       ],
-      sameAs: ["https://www.instagram.com/dradanilubian/"],
+      telephone: "+55-47-9112-9634",
+      priceRange: "$$",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Rua Pastor Stutzer, 220, Sala 501",
+        addressLocality: "Blumenau",
+        addressRegion: "SC",
+        postalCode: "89010-390",
+        addressCountry: "BR"
+      },
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        opens: "08:00",
+        closes: "18:00"
+      },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "5.0",
+        reviewCount: "42"
+      },
+      sameAs: [
+        "https://www.instagram.com/dradanilubian/",
+        "https://maps.google.com/maps?cid=3607026727299068038"
+      ],
     },
     {
       "@type": "Physician",
@@ -108,14 +140,26 @@ const schemaData = {
       name: "Dra. Danielly Lubian Bertiel",
       url: "https://dradanilubian.com.br",
       description:
-        "Médica especialista em longevidade, emagrecimento e performance metabólica. CRM/SC 33815.",
+        "Médica especialista em longevidade, emagrecimento e performance metabólica. CRM-SC 33815.",
       medicalSpecialty: "Medicina Preventiva e Longevidade",
+      telephone: "+55-47-9112-9634",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Rua Pastor Stutzer, 220, Sala 501",
+        addressLocality: "Blumenau",
+        addressRegion: "SC",
+        postalCode: "89010-390",
+        addressCountry: "BR"
+      },
       identifier: {
         "@type": "PropertyValue",
         name: "CRM",
         value: "SC 33815",
       },
-      sameAs: ["https://www.instagram.com/dradanilubian/"],
+      sameAs: [
+        "https://www.instagram.com/dradanilubian/",
+        "https://maps.google.com/maps?cid=3607026727299068038"
+      ],
     },
   ],
 };
@@ -134,6 +178,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased bg-background text-foreground">
+        <GoogleAnalytics />
         <Header />
         <main>{children}</main>
         <Footer />

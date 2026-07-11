@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { siteConfig } from "@/config/site";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackEvent } from "@/components/ui/GoogleAnalytics";
 
 export function WhatsAppFloat() {
   const [isVisible, setIsVisible] = useState(true);
@@ -14,12 +15,8 @@ export function WhatsAppFloat() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        const isMobile = window.innerWidth < 768;
-        if (isMobile) {
-          setIsVisible(!entry.isIntersecting);
-        } else {
-          setIsVisible(true);
-        }
+        // Hide the float on all devices when footer is visible
+        setIsVisible(!entry.isIntersecting);
       },
       {
         root: null,
@@ -29,22 +26,8 @@ export function WhatsAppFloat() {
 
     observer.observe(footer);
 
-    const handleResize = () => {
-      const isMobile = window.innerWidth < 768;
-      if (!isMobile) {
-        setIsVisible(true);
-      } else {
-        const rect = footer.getBoundingClientRect();
-        const isInViewport = rect.top < window.innerHeight;
-        setIsVisible(!isInViewport);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-
     return () => {
       observer.disconnect();
-      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -55,6 +38,7 @@ export function WhatsAppFloat() {
           href={siteConfig.whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackEvent("whatsapp_click", { location: "float_button" })}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}

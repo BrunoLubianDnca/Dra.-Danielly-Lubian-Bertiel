@@ -1,0 +1,42 @@
+name: Scrape Google Reviews Daily
+
+on:
+  schedule:
+    - cron: '0 3 * * *' # Diariamente às 03:00 UTC (00:00 Horário de Brasília)
+  workflow_dispatch: # Permite rodar manualmente a partir da aba Actions no GitHub
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # Necessário para dar permissão de push ao commit do robô
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-size: 20
+
+      - name: Install Scraper Dependencies
+        run: |
+          npm install playwright
+
+      - name: Install Playwright Chromium
+        run: |
+          npx playwright install chromium --with-deps
+
+      - name: Run Reviews Scraper
+        run: |
+          node scripts/scrape-reviews.js
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add src/data/reviews.json
+          # Só faz commit e push se houver mudanças reais no JSON
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: atualiza avaliações do Google [skip ci]" && git push)

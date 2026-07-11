@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function TratamentosPage() {
   return (
@@ -26,9 +27,9 @@ export default function TratamentosPage() {
         <p className="text-muted-foreground text-lg mb-8 leading-relaxed max-w-lg">
           Nesta página, você encontrará detalhes sobre as minhas áreas de atuação: emagrecimento, performance metabólica e longevidade. Em breve!
         </p>
-        <a href="/" className="btn-primary">
+        <Link href="/" className="btn-primary">
           Voltar para o Início
-        </a>
+        </Link>
       </div>
     </div>
   );
