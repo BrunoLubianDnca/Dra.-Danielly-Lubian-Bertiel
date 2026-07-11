@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
-import { submitPreConsulta } from "@/app/pre-consulta/actions";
 import { toast } from "sonner";
 import Link from "next/link";
 import Image from "next/image";
+
+const WHATSAPP_NUMBER = "554791129634";
 
 interface GeralData {
   name: string;
@@ -113,62 +114,48 @@ export default function PreConsultaGeral() {
     });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (!formData.confirmacao) {
       toast.error("Você precisa confirmar que as informações fornecidas são verdadeiras.");
       return;
     }
 
-    setLoading(true);
+    const lines = [
+      `📋 *PRÉ-CONSULTA MÉDICA — Saúde Geral*`,
+      ``,
+      `👤 *DADOS PESSOAIS*`,
+      `Nome: ${formData.name}`,
+      `Nasc.: ${formData.birthdate || "Não informado"}`,
+      `Tel: ${formData.phone}`,
+      `E-mail: ${formData.email || "Não informado"}`,
+      ``,
+      `🎯 *MOTIVO DA CONSULTA*`,
+      `${formData.motivo}`,
+      `Tempo de sintomas: ${formData.tempoSintomas || "Não respondido"}`,
+      ``,
+      `🧬 *ORGANISMO*`,
+      `Sintomas: ${formData.organismo.length > 0 ? formData.organismo.join(", ") : "Nenhum"}`,
+      ``,
+      `🏃 *ESTILO DE VIDA*`,
+      `Sono: ${formData.sono || "Não respondido"} (${formData.horasSono}h)`,
+      `Energia: ${formData.energia || "Não respondido"}`,
+      `Humor: ${formData.humor || "Não respondido"}`,
+      `Atividade física: ${formData.atividadeFisica || "Não respondido"}`,
+      `Água: ${formData.agua || "Não respondido"}`,
+      `Sol: ${formData.sol || "Não respondido"}`,
+      ``,
+      `🏥 *HISTÓRICO DE SAÚDE*`,
+      `Histórico: ${formData.historico.length > 0 ? formData.historico.join(", ") : "Nenhum"}`,
+      `Obs.: ${formData.historicoNotas || "Sem observações"}`,
+      `Autoavaliação: ${formData.saudeNota}/10`,
+      ``,
+      `✅ Declaro que todas as informações são verdadeiras.`,
+    ];
 
-    const formattedMessage = `
-# Respostas da Pré-Consulta Geral
-
-## 🩺 Etapa 1 — Conhecendo Você
-* **Nome:** ${formData.name}
-* **Data de Nascimento:** ${formData.birthdate || "Não informada"}
-* **Telefone:** ${formData.phone}
-* **E-mail:** ${formData.email || "Não informado"}
-
-## ❓ Etapa 2 — Motivo da Consulta
-* **O que motivou o agendamento?** 
-  ${formData.motivo}
-* **Tempo de sintomas:** ${formData.tempoSintomas || "Não respondido"}
-
-## 🧬 Etapa 3 — Seu Organismo
-* **Sintomas identificados:** ${formData.organismo.length > 0 ? formData.organismo.join(", ") : "Nenhum selecionado"}
-
-## 🏃 Etapa 4 — Estilo de Vida e Rotina
-* **Qualidade do sono:** ${formData.sono || "Não respondido"}
-* **Horas de sono:** ${formData.horasSono}h
-* **Disposição durante o dia:** ${formData.energia || "Não respondido"}
-* **Humor recente:** ${formData.humor || "Não respondido"}
-* **Pratica atividade física?** ${formData.atividadeFisica || "Não respondido"}
-* **Ingestão de água:** ${formData.agua || "Não respondido"}
-* **Exposição ao sol:** ${formData.sol || "Não respondido"}
-
-## 🏥 Etapa 5 — Histórico de Saúde e Finalização
-* **Condições/Histórico:** ${formData.historico.length > 0 ? formData.historico.join(", ") : "Nenhuma selecionada"}
-* **Anotações médicas/Medicações:** ${formData.historicoNotas || "Sem observações"}
-* **Autoavaliação da saúde (0 a 10):** ${formData.saudeNota}/10
-`.trim();
-
-    const response = await submitPreConsulta({
-      name: formData.name,
-      phone: formData.phone,
-      email: formData.email,
-      objective: "Geral",
-      message: formattedMessage,
-    });
-
-    setLoading(false);
-
-    if (response.success) {
-      toast.success("Pré-consulta enviada com sucesso!");
-      setCompleted(true);
-    } else {
-      toast.error(response.error || "Erro ao salvar pré-consulta.");
-    }
+    const msg = lines.join("\n");
+    const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(msg)}`;
+    window.open(url, "_blank");
+    setCompleted(true);
   };
 
   if (completed) {

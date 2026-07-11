@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
-import { submitPreConsulta } from "@/app/pre-consulta/actions";
 import { toast } from "sonner";
 import Link from "next/link";
 import Image from "next/image";
+
+const WHATSAPP_NUMBER = "554791129634";
 
 interface EmagrecimentoData {
   name: string;
@@ -218,70 +219,55 @@ export default function PreConsultaEmagrecimento() {
     return scores[0];
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (!formData.confirmacao) {
       toast.error("Por favor, confirme que as declarações são verdadeiras.");
       return;
     }
 
-    setLoading(true);
-
     const profile = getEatingProfile();
 
-    let comportamentoMarkdown = "";
-    comportamentoStatements.forEach((st) => {
+    const comportamentoLinhas = comportamentoStatements.map((st) => {
       const val = formData.comportamento[st.key];
       const labelVal = frequenciaOptions.find((o) => o.value === val)?.label || "Não respondido";
-      comportamentoMarkdown += `* **${st.label}** ${labelVal}\n`;
+      return `${st.label}: ${labelVal}`;
     });
 
-    const formattedMessage = `
-# Pré-Consulta de Emagrecimento
+    const lines = [
+      `🍃 *PRÉ-CONSULTA DE EMAGRECIMENTO*`,
+      ``,
+      `👤 *IDENTIFICAÇÃO*`,
+      `Nome: ${formData.name}`,
+      `Nasc.: ${formData.birthdate}`,
+      `CPF: ${formData.cpf}`,
+      `Tel: ${formData.phone}`,
+      `E-mail: ${formData.email || "Não informado"}`,
+      `Área de atuação: ${formData.areaAtuacao || "Não informada"}`,
+      `Altura: ${formData.altura || "Não informada"}`,
+      `Peso atual: ${formData.peso || "Não informado"}`,
+      ``,
+      `🎯 *OBJETIVO E SAÚDE*`,
+      `Objetivo: ${formData.objetivo}`,
+      `Meta: ${formData.metaKg >= 20 ? "Mais de 20 kg" : `${formData.metaKg} kg`}`,
+      `Tentativas anteriores: ${formData.historicoTentativas.join(", ")}`,
+      `Condições de saúde: ${formData.saudeProblemas.length > 0 ? formData.saudeProblemas.join(", ") : "Nenhuma"}`,
+      ``,
+      `🍽️ *COMPORTAMENTO ALIMENTAR*`,
+      ...comportamentoLinhas,
+      ``,
+      `📊 *PERFIL PREDOMINANTE*`,
+      `${profile.name}`,
+      ``,
+      `📝 *REFLEXÃO*`,
+      `O que dificulta o emagrecimento: ${formData.dificuldade || "Não respondido"}`,
+      ``,
+      `✅ Declaro que todas as informações são verdadeiras.`,
+    ];
 
-## 🩺 Etapa 1 — Identificação
-* **Nome:** ${formData.name}
-* **Data de Nascimento:** ${formData.birthdate}
-* **CPF:** ${formData.cpf}
-* **Telefone:** ${formData.phone}
-* **E-mail:** ${formData.email || "Não informado"}
-* **Área de atuação:** ${formData.areaAtuacao || "Não informada"}
-* **Altura:** ${formData.altura || "Não informada"}
-* **Peso atual:** ${formData.peso || "Não informado"}
-
-## 🎯 Etapa 2 — Objetivo e Saúde
-* **Objetivo principal:** ${formData.objetivo}
-* **Meta (Kg a perder):** ${formData.metaKg >= 20 ? "Mais de 20 kg" : `${formData.metaKg} kg`}
-* **Tentativas anteriores:** ${formData.historicoTentativas.join(", ")}
-* **Condições de saúde:** ${formData.saudeProblemas.length > 0 ? formData.saudeProblemas.join(", ") : "Nenhuma selecionada"}
-
-## 🍽️ Etapas 3 e 4 — Comportamento Alimentar
-${comportamentoMarkdown}
-
-## 📊 Análise de Perfil Estimado
-* **Perfil Predominante:** ${profile.name} (Pontuação: ${profile.score.toFixed(1)}/5.0)
-* **Diagnóstico Inicial:** ${profile.desc}
-
-## 📝 Reflexão
-* **O que mais dificulta seu emagrecimento hoje?**
-  ${formData.dificuldade || "Não respondido"}
-`.trim();
-
-    const response = await submitPreConsulta({
-      name: formData.name,
-      phone: formData.phone,
-      email: formData.email,
-      objective: "Emagrecimento",
-      message: formattedMessage,
-    });
-
-    setLoading(false);
-
-    if (response.success) {
-      toast.success("Pré-consulta enviada com sucesso!");
-      setCompleted(true);
-    } else {
-      toast.error(response.error || "Erro ao salvar pré-consulta.");
-    }
+    const msg = lines.join("\n");
+    const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(msg)}`;
+    window.open(url, "_blank");
+    setCompleted(true);
   };
 
   const profile = getEatingProfile();
