@@ -79,7 +79,7 @@ export function ClinicaSection() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-5 relative"
+            className="lg:col-span-5 relative order-2 lg:order-1 mt-6 lg:mt-0"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >
@@ -139,7 +139,7 @@ export function ClinicaSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="lg:col-span-7 lg:pl-8 flex flex-col gap-6"
+            className="lg:col-span-7 lg:pl-8 flex flex-col gap-6 order-1 lg:order-2"
           >
             <div>
               <p className="text-label mb-4">O Espaço</p>
