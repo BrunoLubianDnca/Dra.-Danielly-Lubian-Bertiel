@@ -14,7 +14,7 @@ export function BlogPreviewSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
-          <p className="text-label text-foreground">Conteúdos para sua melhor versão</p>
+          <h2 className="text-label text-foreground">Conteúdos para sua melhor versão</h2>
           <Link
             href="/blog"
             className="flex items-center gap-2 font-sans text-[11px] font-semibold tracking-widest uppercase text-foreground hover:text-primary transition-colors"

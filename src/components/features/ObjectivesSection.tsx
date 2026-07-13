@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Activity, Zap, Leaf, ShieldCheck } from "lucide-react";
 import Link from "next/link";
@@ -32,6 +33,21 @@ const objectives = [
 ];
 
 export function ObjectivesSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const handleScroll = () => {
+      const cardWidth = el.scrollWidth / objectives.length;
+      const idx = Math.round(el.scrollLeft / cardWidth);
+      setActiveIndex(Math.min(idx, objectives.length - 1));
+    };
+    el.addEventListener("scroll", handleScroll, { passive: true });
+    return () => el.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <section id="especialidades" className="section-padding bg-background relative z-10 -mt-8 rounded-t-[2.5rem]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -45,6 +61,7 @@ export function ObjectivesSection() {
         </div>
 
         <div 
+          ref={scrollRef}
           className="flex flex-row gap-5 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-none md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible md:pb-0"
           style={{ scrollbarWidth: "none" }}
         >
@@ -57,7 +74,7 @@ export function ObjectivesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.6 }}
-                className="shrink-0 w-[280px] sm:w-[320px] md:w-auto snap-center"
+                className="shrink-0 w-[85vw] max-w-[290px] md:w-auto snap-center"
               >
                 <Link
                   href={obj.href}
@@ -80,6 +97,26 @@ export function ObjectivesSection() {
             )
           })}
         </div>
+
+        {/* Indicadores de Scroll Dinâmicos para Mobile */}
+        <div className="flex items-center justify-center gap-1.5 mt-2 md:hidden">
+          {objectives.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => {
+                const el = scrollRef.current;
+                if (!el) return;
+                const cardWidth = el.scrollWidth / objectives.length;
+                el.scrollTo({ left: idx * cardWidth, behavior: "smooth" });
+              }}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                activeIndex === idx ? "w-5 bg-primary" : "w-1.5 bg-foreground/20"
+              }`}
+              aria-label={`Ir para especialidade ${idx + 1}`}
+            />
+          ))}
+        </div>
+
       </div>
     </section>
   );

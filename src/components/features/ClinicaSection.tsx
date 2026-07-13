@@ -30,6 +30,10 @@ const clinicImages = [
     src: "/images/clinica/foto-clinica-2.jpeg",
     position: "center center",
   },
+  {
+    src: "/connect-office.png",
+    position: "center center",
+  },
 ];
 
 export function ClinicaSection() {

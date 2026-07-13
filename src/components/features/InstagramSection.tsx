@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 
 // Inline Icon para Instagram caso não esteja na versão do lucide
@@ -14,6 +15,21 @@ function Instagram(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export function InstagramSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const handleScroll = () => {
+      const cardWidth = el.scrollWidth / 3; // 3 posts
+      const idx = Math.round(el.scrollLeft / cardWidth);
+      setActiveIndex(Math.min(idx, 2));
+    };
+    el.addEventListener("scroll", handleScroll, { passive: true });
+    return () => el.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <section className="py-24 bg-background border-t border-border/40">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -56,6 +72,7 @@ export function InstagramSection() {
 
         {/* Grid/Carrossel de Posts com Snap Scroll no Mobile */}
         <div 
+          ref={scrollRef}
           className="flex flex-row gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-none md:grid md:grid-cols-3 md:overflow-visible md:pb-0"
           style={{ scrollbarWidth: "none" }}
         >
@@ -64,7 +81,7 @@ export function InstagramSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="w-[290px] sm:w-[320px] md:w-full shrink-0 snap-center flex justify-center bg-white rounded-3xl overflow-hidden shadow-lg border border-border/50"
+            className="w-[85vw] max-w-[290px] md:w-full shrink-0 snap-center flex justify-center bg-white rounded-3xl overflow-hidden shadow-lg border border-border/50"
           >
             <iframe
               src="https://www.instagram.com/reel/DZYkeFPzOrQ/embed"
@@ -81,7 +98,7 @@ export function InstagramSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="w-[290px] sm:w-[320px] md:w-full shrink-0 snap-center flex justify-center bg-white rounded-3xl overflow-hidden shadow-lg border border-border/50"
+            className="w-[85vw] max-w-[290px] md:w-full shrink-0 snap-center flex justify-center bg-white rounded-3xl overflow-hidden shadow-lg border border-border/50"
           >
             <iframe
               src="https://www.instagram.com/p/DRmeibEDbX8/embed"
@@ -98,7 +115,7 @@ export function InstagramSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="w-[290px] sm:w-[320px] md:w-full shrink-0 snap-center flex justify-center bg-white rounded-3xl overflow-hidden shadow-lg border border-border/50"
+            className="w-[85vw] max-w-[290px] md:w-full shrink-0 snap-center flex justify-center bg-white rounded-3xl overflow-hidden shadow-lg border border-border/50"
           >
             <iframe
               src="https://www.instagram.com/reel/DaDe9e_zaSk/embed"
@@ -109,6 +126,25 @@ export function InstagramSection() {
               loading="lazy"
             />
           </motion.div>
+        </div>
+
+        {/* Indicadores de Scroll Dinâmicos para Mobile */}
+        <div className="flex items-center justify-center gap-1.5 mt-2 md:hidden">
+          {[...Array(3)].map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => {
+                const el = scrollRef.current;
+                if (!el) return;
+                const cardWidth = el.scrollWidth / 3;
+                el.scrollTo({ left: idx * cardWidth, behavior: "smooth" });
+              }}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                activeIndex === idx ? "w-5 bg-primary" : "w-1.5 bg-foreground/20"
+              }`}
+              aria-label={`Ir para post ${idx + 1}`}
+            />
+          ))}
         </div>
 
       </div>
