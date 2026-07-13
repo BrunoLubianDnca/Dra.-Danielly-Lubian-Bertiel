@@ -83,8 +83,8 @@ export function ClinicaSection() {
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >
-            {/* Contêiner da Imagem Principal */}
-            <div className="aspect-[4/5] relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-border/20">
+            {/* Contêiner da Imagem Principal (Mais alta para acompanhar o texto) */}
+            <div className="relative z-10 w-full aspect-[3/4] lg:h-[580px] lg:aspect-[3/4] mx-auto rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl border border-border/20">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`main-${active}`}
@@ -128,8 +128,8 @@ export function ClinicaSection() {
               </button>
             </div>
 
-            {/* Moldura Decorativa Padrão do Site */}
-            <div className="absolute top-4 -right-4 bottom-4 -left-4 border border-terra/30 rounded-2xl z-0 hidden sm:block" />
+            {/* Moldura Decorativa Mais Espessa e Deslocada (Mais intencional) */}
+            <div className="absolute top-5 -right-5 bottom-5 -left-5 border-[3px] border-primary/40 rounded-3xl z-0 hidden sm:block" />
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-sand/30 rounded-full blur-3xl z-0" />
           </motion.div>
 
@@ -151,11 +151,11 @@ export function ClinicaSection() {
               </p>
             </div>
 
-            {/* Grade de Miniaturas para Navegação */}
+            {/* Grade de Miniaturas para Navegação (Cantos maiores, zoom 3%, sombra e transição fluida) */}
             <div className="w-full mt-4">
               <div
                 ref={thumbsRef}
-                className="flex flex-row gap-3 overflow-x-auto pb-1 snap-x snap-mandatory scrollbar-none"
+                className="flex flex-row gap-4 overflow-x-auto pb-1 snap-x snap-mandatory scrollbar-none"
                 style={{ scrollbarWidth: "none" }}
               >
                 {clinicImages.map((img, idx) => (
@@ -167,10 +167,11 @@ export function ClinicaSection() {
                       setTimeout(() => setPaused(false), 8000);
                     }}
                     className={`
-                      relative shrink-0 snap-center overflow-hidden transition-all duration-300 rounded-xl border-2
-                      w-[110px] h-[80px] lg:w-[115px] lg:h-[85px]
+                      relative shrink-0 snap-center overflow-hidden transition-all duration-300 rounded-2xl border-2
+                      w-[110px] h-[80px] lg:w-[120px] lg:h-[90px]
+                      shadow-sm hover:shadow-md hover:scale-[1.03]
                       ${active === idx
-                        ? "border-primary shadow-lg ring-2 ring-primary/20 scale-[1.02]"
+                        ? "border-primary shadow-lg ring-2 ring-primary/20 scale-[1.03]"
                         : "border-transparent opacity-50 hover:opacity-85 hover:border-border"
                       }
                     `}
@@ -180,8 +181,8 @@ export function ClinicaSection() {
                       src={img.src}
                       alt={`Miniatura ${idx + 1}`}
                       fill
-                      className="object-cover"
-                      sizes="115px"
+                      className="object-cover transition-transform duration-500 hover:scale-105"
+                      sizes="120px"
                     />
                   </button>
                 ))}
