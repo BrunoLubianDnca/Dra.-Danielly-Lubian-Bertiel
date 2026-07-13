@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
-import { siteConfig } from "@/config/site";
+import { useWhatsApp } from "@/hooks/useWhatsApp";
 import { motion, AnimatePresence } from "framer-motion";
 import { trackEvent } from "@/components/ui/GoogleAnalytics";
 
 export function WhatsAppFloat() {
   const [isVisible, setIsVisible] = useState(true);
+  const { getWhatsAppUrl } = useWhatsApp();
 
   useEffect(() => {
     const footer = document.querySelector("footer");
@@ -35,7 +36,7 @@ export function WhatsAppFloat() {
     <AnimatePresence>
       {isVisible && (
         <motion.a
-          href={siteConfig.whatsappUrl}
+          href={getWhatsAppUrl("geral")}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackEvent("whatsapp_click", { location: "float_button" })}

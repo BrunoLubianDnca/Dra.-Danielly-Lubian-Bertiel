@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
-import { siteConfig } from "@/config/site";
+import { useWhatsApp } from "@/hooks/useWhatsApp";
 import { navLinks } from "@/config/navigation";
 import { cn } from "@/lib/utils";
 
@@ -15,6 +15,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const { getWhatsAppUrl } = useWhatsApp();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -72,7 +73,7 @@ export function Header() {
           {/* CTA */}
           <div className="hidden lg:block">
             <a
-              href={siteConfig.whatsappUrl}
+              href={getWhatsAppUrl("geral")}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-whatsapp"
@@ -116,7 +117,7 @@ export function Header() {
               ))}
               <div className="mt-6">
                 <a
-                  href={siteConfig.whatsappUrl}
+                  href={getWhatsAppUrl("geral")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-whatsapp w-full justify-center"

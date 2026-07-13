@@ -1,8 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
-import { siteConfig } from "@/config/site";
+import { useWhatsApp } from "@/hooks/useWhatsApp";
 import { navLinks, legalLinks } from "@/config/navigation";
 
 // Specialty links rendered statically to avoid duplicate-key issues
@@ -14,6 +16,7 @@ const specialties = [
 ];
 
 export function Footer() {
+  const { getWhatsAppUrl } = useWhatsApp();
   return (
     <footer className="bg-terra-dark pt-16 pb-8 border-t border-terra">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -98,7 +101,7 @@ export function Footer() {
             <ul className="space-y-3.5">
               <li>
                 <a
-                  href={siteConfig.whatsappUrl}
+                  href={getWhatsAppUrl("geral")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2.5 font-sans text-sm text-white/80 hover:text-white transition-colors"

@@ -4,16 +4,16 @@ import { motion } from "framer-motion";
 import { MapPin, Clock } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import Image from "next/image";
+import { useWhatsApp } from "@/hooks/useWhatsApp";
 
 export function LocationSection() {
-  const whatsappNumber = "554791129634";
-  const whatsappMessage = "Olá! Vim do Google e gostaria de saber mais sobre a consulta da Dra";
-  const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(whatsappMessage)}`;
+  const { getWhatsAppUrl } = useWhatsApp();
+  const whatsappUrl = getWhatsAppUrl("geral");
 
   return (
     <section id="onde" className="bg-terra-dark py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        
+
         {/* Grid de 12 colunas padrão do projeto */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
 
@@ -89,7 +89,7 @@ export function LocationSection() {
                 priority
               />
               <div className="absolute bottom-3 left-4 bg-black/60 backdrop-blur-sm px-3 py-1 rounded text-xs font-bold text-white select-none">
-                Fachada Connect Office
+                Edifício Connect Office
               </div>
             </div>
 

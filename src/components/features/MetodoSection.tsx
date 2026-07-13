@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion as motionFramer } from "framer-motion";
 import { ClipboardList, Target, TrendingUp, Star, Check, Leaf, CalendarCheck, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { useWhatsApp } from "@/hooks/useWhatsApp";
 
 const steps = [
   {
@@ -76,9 +77,8 @@ export function MetodoSection() {
     return () => el.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const whatsappNumber = "554791129634";
-  const whatsappMessage = "Olá! Vim do site e gostaria de saber mais sobre o Método Florescer.";
-  const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(whatsappMessage)}`;
+  const { getWhatsAppUrl } = useWhatsApp();
+  const whatsappUrl = getWhatsAppUrl("metodo");
 
   return (
     <section id="metodo" className="relative section-padding overflow-hidden bg-terra-dark">
