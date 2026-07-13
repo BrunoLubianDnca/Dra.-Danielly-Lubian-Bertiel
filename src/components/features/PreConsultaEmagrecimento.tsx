@@ -114,8 +114,8 @@ export default function PreConsultaEmagrecimento() {
   const totalSteps = 5;
 
   const handleNext = () => {
-    if (step === 1 && (!formData.name || !formData.phone || !formData.birthdate || !formData.cpf)) {
-      toast.error("Por favor, preencha Nome, Data de Nascimento, CPF e Telefone.");
+    if (step === 1 && (!formData.name || !formData.phone || !formData.birthdate)) {
+      toast.error("Por favor, preencha Nome, Data de Nascimento e Telefone.");
       return;
     }
     if (step === 2 && (!formData.objetivo || formData.historicoTentativas.length === 0)) {
@@ -459,10 +459,10 @@ export default function PreConsultaEmagrecimento() {
                       />
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <label className="font-sans text-[10px] font-bold text-foreground/80 uppercase">CPF *</label>
+                      <label className="font-sans text-[10px] font-bold text-foreground/80 uppercase">CPF (Opcional)</label>
                       <input
                         type="text"
-                        placeholder="000.000.000-00"
+                        placeholder="000.000.000-00 (Opcional)"
                         value={formData.cpf}
                         onChange={(e) => setFormData({ ...formData, cpf: e.target.value })}
                         className="border border-border focus:ring-1 focus:ring-primary/45 rounded-xl px-4 py-2.5 bg-[#FAF6F2]/10 outline-none transition-all font-sans text-sm text-foreground"

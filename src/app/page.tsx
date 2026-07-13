@@ -5,6 +5,7 @@ import { MetodoSection } from "@/components/features/MetodoSection";
 import { BlogPreviewSection } from "@/components/features/BlogPreviewSection";
 import { FaqSection } from "@/components/features/FaqSection";
 import { InstagramSection } from "@/components/features/InstagramSection";
+import { ClinicaSection } from "@/components/features/ClinicaSection";
 import { LocationSection } from "@/components/features/LocationSection";
 import { GoogleReviewsSection } from "@/components/features/GoogleReviewsSection";
 import type { Metadata } from "next";
@@ -22,6 +23,7 @@ export default function HomePage() {
       <AboutSection />
       <MetodoSection />
       <ObjectivesSection />
+      <ClinicaSection />
       <LocationSection />
       <InstagramSection />
       <FaqSection />

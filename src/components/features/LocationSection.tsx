@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { MapPin, Clock } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
-import Image from "next/image";
 
 export function LocationSection() {
   const whatsappNumber = "554791129634";
@@ -13,9 +12,9 @@ export function LocationSection() {
   return (
     <section id="onde" className="bg-terra-dark py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          
-          {/* Lado Esquerdo: Informações da Clínica (Restaurado Padrão Original) */}
+        <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-12 lg:gap-16 items-stretch">
+
+          {/* Lado Esquerdo: Informações da Clínica */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -66,43 +65,23 @@ export function LocationSection() {
             </a>
           </motion.div>
 
-          {/* Lado Direito: Foto do Prédio + Google Maps Lado a Lado */}
+          {/* Lado Direito: Google Maps Full */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-auto lg:h-[450px]"
+            className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 min-h-[280px] lg:min-h-[340px]"
           >
-            {/* Foto do Edifício */}
-            <div className="relative h-[220px] sm:h-full rounded-3xl overflow-hidden border-4 border-white/10 shadow-2xl select-none group">
-              <Image 
-                src="/connect-office.png" 
-                alt="Edifício Connect Office" 
-                fill 
-                className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                sizes="(max-width: 768px) 100vw, 300px"
-              />
-              {/* Selo do Edifício */}
-              <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md px-3 py-2 rounded-xl text-center border border-white/10">
-                <p className="font-sans text-[10px] font-bold tracking-widest uppercase text-white flex items-center justify-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-terra-light" /> Edifício Connect Office
-                </p>
-              </div>
-            </div>
-
-            {/* Mapa do Google */}
-            <div className="h-[220px] sm:h-full bg-white rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10">
-              <iframe 
-                src="https://maps.google.com/maps?q=Dra+Danielly+Lubian+Bertiel,+Blumenau+-+SC&t=&z=16&ie=UTF8&iwloc=&output=embed" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
+            <iframe
+              src="https://maps.google.com/maps?q=Dra+Danielly+Lubian+Bertiel,+Blumenau+-+SC&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0, display: "block", minHeight: "300px" }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </motion.div>
 
         </div>

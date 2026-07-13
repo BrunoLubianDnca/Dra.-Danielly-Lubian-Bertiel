@@ -81,9 +81,9 @@ export default async function BlogPostPage({ params }: PostPageProps) {
 
         {/* Corpo do Artigo */}
         <div className="prose prose-stone max-w-none">
-          <p className="mb-4 font-sans text-sm sm:text-base text-foreground/80 leading-relaxed">
+          <div className="mb-4 font-sans text-sm sm:text-base text-foreground/80 leading-relaxed">
             <span dangerouslySetInnerHTML={{ __html: formattedHtml }} />
-          </p>
+          </div>
         </div>
       </div>
     </article>

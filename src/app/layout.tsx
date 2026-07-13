@@ -23,7 +23,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://dradanilubian.com.br"
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://dradaniellylubian.com.br"
   ),
   title: {
     default: "Dra. Danielly Lubian Bertiel | Medicina da Longevidade e Emagrecimento em Santa Catarina",
@@ -43,12 +43,12 @@ export const metadata: Metadata = {
     "hormônios",
     "nutrologia",
   ],
-  authors: [{ name: "Dra. Danielly Lubian Bertiel", url: "https://dradanilubian.com.br" }],
+  authors: [{ name: "Dra. Danielly Lubian Bertiel", url: "https://dradaniellylubian.com.br" }],
   creator: "Dra. Danielly Lubian Bertiel",
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://dradanilubian.com.br",
+    url: "https://dradaniellylubian.com.br",
     siteName: "Dra. Danielly Lubian Bertiel",
     title: "Dra. Danielly Lubian Bertiel | Medicina da Longevidade e Emagrecimento",
     description:
@@ -89,11 +89,11 @@ const schemaData = {
   "@graph": [
     {
       "@type": "MedicalBusiness",
-      "@id": "https://dradanilubian.com.br/#organization",
+      "@id": "https://dradaniellylubian.com.br/#organization",
       name: "Consultório Dra. Danielly Lubian Bertiel",
-      url: "https://dradanilubian.com.br",
-      logo: "https://dradanilubian.com.br/logo.png",
-      image: "https://dradanilubian.com.br/connect-office.png",
+      url: "https://dradaniellylubian.com.br",
+      logo: "https://dradaniellylubian.com.br/logo.png",
+      image: "https://dradaniellylubian.com.br/connect-office.png",
       description:
         "Medicina personalizada para longevidade, emagrecimento e performance metabólica em Santa Catarina.",
       medicalSpecialty: [
@@ -136,9 +136,9 @@ const schemaData = {
     },
     {
       "@type": "Physician",
-      "@id": "https://dradanilubian.com.br/#physician",
+      "@id": "https://dradaniellylubian.com.br/#physician",
       name: "Dra. Danielly Lubian Bertiel",
-      url: "https://dradanilubian.com.br",
+      url: "https://dradaniellylubian.com.br",
       description:
         "Médica especialista em longevidade, emagrecimento e performance metabólica. CRM-SC 33815.",
       medicalSpecialty: "Medicina Preventiva e Longevidade",

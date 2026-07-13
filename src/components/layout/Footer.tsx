@@ -44,7 +44,7 @@ export function Footer() {
               </div>
             </Link>
 
-            <p className="font-sans text-sm text-white/65 leading-relaxed">
+            <p className="font-sans text-sm text-white/80 leading-relaxed">
               Medicina que transforma vidas.
             </p>
 
@@ -66,7 +66,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="font-sans text-sm text-white/65 hover:text-white transition-colors"
+                    className="font-sans text-sm text-white/80 hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -83,7 +83,7 @@ export function Footer() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="font-sans text-sm text-white/65 hover:text-white transition-colors"
+                    className="font-sans text-sm text-white/80 hover:text-white transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -101,7 +101,7 @@ export function Footer() {
                   href={siteConfig.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 font-sans text-sm text-white/65 hover:text-white transition-colors"
+                  className="flex items-center gap-2.5 font-sans text-sm text-white/80 hover:text-white transition-colors"
                 >
                   <WhatsAppIcon className="w-4 h-4 shrink-0" />
                   (47) 9112-9634
@@ -112,7 +112,7 @@ export function Footer() {
                   href="https://maps.app.goo.gl/ikdSCTPcGiYpgJQy9"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-2.5 font-sans text-sm text-white/65 hover:text-white transition-colors"
+                  className="flex items-start gap-2.5 font-sans text-sm text-white/80 hover:text-white transition-colors"
                 >
                   <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
                   <span className="leading-relaxed">
@@ -127,7 +127,7 @@ export function Footer() {
                   href="https://instagram.com/dradanilubian"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 font-sans text-sm text-white/65 hover:text-white transition-colors"
+                  className="flex items-center gap-2.5 font-sans text-sm text-white/80 hover:text-white transition-colors"
                 >
                   <Instagram className="w-4 h-4 shrink-0" />
                   @dradanilubian
@@ -141,7 +141,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="pt-6 border-t border-white/10 flex flex-col items-center gap-2.5">
           <div className="w-full flex flex-col md:flex-row items-center justify-between gap-3">
-            <p className="font-sans text-xs text-white/55">
+            <p className="font-sans text-xs text-white/75">
               © {new Date().getFullYear()} Dra. Danielly Lubian Bertiel | CRM-SC 33815 | Todos os direitos reservados
             </p>
             <div className="flex items-center gap-4">
@@ -149,20 +149,20 @@ export function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-sans text-xs text-white/55 hover:text-white transition-colors"
+                  className="font-sans text-xs text-white/75 hover:text-white transition-colors"
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
           </div>
-          <p className="font-sans text-xs text-white/45">
+          <p className="font-sans text-xs text-white/70">
             Desenvolvido por{" "}
             <a
               href="https://www.instagram.com/dinamicasolucoesdigitais"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white/75 transition-colors underline underline-offset-2"
+              className="hover:text-white/90 transition-colors underline underline-offset-2"
             >
               Dinâmica Soluções Digitais
             </a>

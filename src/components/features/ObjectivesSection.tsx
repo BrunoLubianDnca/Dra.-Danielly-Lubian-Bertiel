@@ -44,7 +44,10 @@ export function ObjectivesSection() {
           <div className="h-[1px] w-12 bg-primary/30" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div 
+          className="flex flex-row gap-5 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-none md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible md:pb-0"
+          style={{ scrollbarWidth: "none" }}
+        >
           {objectives.map((obj, i) => {
             const Icon = obj.icon;
             return (
@@ -54,6 +57,7 @@ export function ObjectivesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.6 }}
+                className="shrink-0 w-[280px] sm:w-[320px] md:w-auto snap-center"
               >
                 <Link
                   href={obj.href}

@@ -54,14 +54,17 @@ export function InstagramSection() {
           </motion.div>
         </div>
 
-        {/* Grid de Posts */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Grid/Carrossel de Posts com Snap Scroll no Mobile */}
+        <div 
+          className="flex flex-row gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-none md:grid md:grid-cols-3 md:overflow-visible md:pb-0"
+          style={{ scrollbarWidth: "none" }}
+        >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="w-full flex justify-center bg-white rounded-3xl overflow-hidden shadow-lg border border-border/50"
+            className="w-[290px] sm:w-[320px] md:w-full shrink-0 snap-center flex justify-center bg-white rounded-3xl overflow-hidden shadow-lg border border-border/50"
           >
             <iframe
               src="https://www.instagram.com/reel/DZYkeFPzOrQ/embed"
@@ -69,7 +72,7 @@ export function InstagramSection() {
               height="580"
               frameBorder="0"
               scrolling="no"
-
+              loading="lazy"
             />
           </motion.div>
 
@@ -78,7 +81,7 @@ export function InstagramSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="w-full flex justify-center bg-white rounded-3xl overflow-hidden shadow-lg border border-border/50"
+            className="w-[290px] sm:w-[320px] md:w-full shrink-0 snap-center flex justify-center bg-white rounded-3xl overflow-hidden shadow-lg border border-border/50"
           >
             <iframe
               src="https://www.instagram.com/p/DRmeibEDbX8/embed"
@@ -86,7 +89,7 @@ export function InstagramSection() {
               height="580"
               frameBorder="0"
               scrolling="no"
-
+              loading="lazy"
             />
           </motion.div>
 
@@ -95,7 +98,7 @@ export function InstagramSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="w-full flex justify-center bg-white rounded-3xl overflow-hidden shadow-lg border border-border/50"
+            className="w-[290px] sm:w-[320px] md:w-full shrink-0 snap-center flex justify-center bg-white rounded-3xl overflow-hidden shadow-lg border border-border/50"
           >
             <iframe
               src="https://www.instagram.com/reel/DaDe9e_zaSk/embed"
@@ -103,7 +106,7 @@ export function InstagramSection() {
               height="580"
               frameBorder="0"
               scrolling="no"
-
+              loading="lazy"
             />
           </motion.div>
         </div>
