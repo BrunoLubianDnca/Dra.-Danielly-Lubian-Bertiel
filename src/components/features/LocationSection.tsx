@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { MapPin, Clock } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
+import Image from "next/image";
 
 export function LocationSection() {
   const whatsappNumber = "554791129634";
@@ -29,7 +30,7 @@ export function LocationSection() {
             <div className="flex flex-col gap-8 mb-12">
               <div className="flex items-start gap-4">
                 <MapPin className="w-6 h-6 mt-1 text-terra-light shrink-0" />
-                <div>
+                <div className="w-full">
                   <h3 className="font-sans text-lg font-bold mb-2">Endereço:</h3>
                   <p className="font-sans text-[15px] text-white leading-relaxed max-w-md">
                     <strong>Edifício Connect Office</strong><br />
@@ -40,6 +41,20 @@ export function LocationSection() {
                   <p className="font-sans text-xs text-white/70 mt-2 italic leading-relaxed">
                     A clínica fica localizada no bairro Jardim Blumenau, bem pertinho do centro e da Alameda.
                   </p>
+
+                  {/* Foto de Referência da Fachada do Prédio */}
+                  <div className="relative mt-4 w-full max-w-[320px] h-36 rounded-2xl overflow-hidden border border-white/10 shadow-md">
+                    <Image
+                      src="/connect-office.png"
+                      alt="Fachada Edifício Connect Office"
+                      fill
+                      className="object-cover"
+                      sizes="320px"
+                    />
+                    <div className="absolute bottom-2 left-3 bg-black/60 backdrop-blur-sm px-2.5 py-1 rounded text-[10px] font-bold text-white select-none">
+                      Edifício Connect Office
+                    </div>
+                  </div>
                 </div>
               </div>
 
