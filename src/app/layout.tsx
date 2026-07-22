@@ -3,7 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import { AiAssistantChat } from "@/components/features/assistant";
 import { GoogleAnalytics } from "@/components/ui/GoogleAnalytics";
 import { Toaster } from "sonner";
 
@@ -102,7 +102,7 @@ const schemaData = {
         "Performance Metabólica",
         "Medicina Preventiva",
       ],
-      telephone: "+55-47-9112-9634",
+      telephone: "+55-47-8839-7897",
       priceRange: "$$",
       address: {
         "@type": "PostalAddress",
@@ -142,7 +142,7 @@ const schemaData = {
       description:
         "Médica especialista em longevidade, emagrecimento e performance metabólica. CRM-SC 33815.",
       medicalSpecialty: "Medicina Preventiva e Longevidade",
-      telephone: "+55-47-9112-9634",
+      telephone: "+55-47-8839-7897",
       address: {
         "@type": "PostalAddress",
         streetAddress: "Rua Pastor Stutzer, 220, Sala 501",
@@ -182,7 +182,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
-        <WhatsAppFloat />
+        <AiAssistantChat />
         <Toaster position="bottom-right" richColors />
       </body>
     </html>

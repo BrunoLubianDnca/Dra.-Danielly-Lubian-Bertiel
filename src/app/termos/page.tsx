@@ -70,7 +70,7 @@ Fica eleito o foro da Comarca de Blumenau – SC para dirimir quaisquer controv�
     title: "Contato",
     content: `Em caso de dúvidas sobre estes Termos de Uso ou sobre qualquer aspecto do site, entre em contato:
 
-• WhatsApp: (47) 9112-9634
+• WhatsApp: (47) 98839-7897
 • Endereço: Edifício Connect Office, Sala 501, Rua Pastor Stutzer, 220, Jardim Blumenau, Blumenau – SC`,
   },
 ];

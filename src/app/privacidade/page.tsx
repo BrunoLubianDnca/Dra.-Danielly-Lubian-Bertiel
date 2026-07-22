@@ -71,7 +71,7 @@ Dados analíticos coletados via Google Analytics são mantidos por até 14 meses
 • Revogar o consentimento a qualquer momento
 • Solicitar informações sobre o compartilhamento de seus dados
 
-Para exercer qualquer um desses direitos, entre em contato conosco pelo WhatsApp (47) 9112-9634 ou pelo e-mail do consultório.`,
+Para exercer qualquer um desses direitos, entre em contato conosco pelo WhatsApp (47) 98839-7897 ou pelo e-mail do consultório.`,
   },
   {
     title: "Segurança dos dados",

@@ -107,7 +107,7 @@ export function Footer() {
                   className="flex items-center gap-2.5 font-sans text-sm text-white/80 hover:text-white transition-colors"
                 >
                   <WhatsAppIcon className="w-4 h-4 shrink-0" />
-                  (47) 9112-9634
+                  (47) 98839-7897
                 </a>
               </li>
               <li>

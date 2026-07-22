@@ -1,6 +1,8 @@
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+const getResendClient = () => {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) return null;
+  return new Resend(key);
+};
 
 interface LeadEmailProps {
   name: string;
@@ -10,10 +12,13 @@ interface LeadEmailProps {
   message: string;
 }
 
+import { Resend } from "resend";
+
 export async function sendLeadNotificationEmail(data: LeadEmailProps) {
   const to = process.env.NOTIFICATION_EMAIL ?? "contato@dradaniellylubian.com.br";
+  const resend = getResendClient();
 
-  if (!process.env.RESEND_API_KEY) {
+  if (!resend) {
     console.warn("⚠️  RESEND_API_KEY não configurada — e-mail de notificação ignorado.");
     return;
   }
@@ -92,7 +97,7 @@ function buildEmailHtml(data: LeadEmailProps): string {
           <!-- CTA -->
           <tr>
             <td style="padding:0 32px 24px">
-              <a href="https://wa.me/554791129634?text=Ol%C3%A1+${encodeURIComponent(data.name)}%2C+recebi+sua+pr%C3%A9-consulta!"
+              <a href="https://wa.me/554788397897?text=Ol%C3%A1+${encodeURIComponent(data.name)}%2C+recebi+sua+pr%C3%A9-consulta!"
                 style="display:inline-block;background:#25D366;color:#fff;text-decoration:none;padding:12px 24px;border-radius:24px;font-size:14px;font-weight:600">
                 💬 Responder no WhatsApp
               </a>
