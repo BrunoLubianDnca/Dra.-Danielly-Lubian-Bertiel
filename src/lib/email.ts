@@ -1,8 +1,4 @@
-const getResendClient = () => {
-  const key = process.env.RESEND_API_KEY;
-  if (!key) return null;
-  return new Resend(key);
-};
+import { Resend } from "resend";
 
 interface LeadEmailProps {
   name: string;
@@ -12,33 +8,44 @@ interface LeadEmailProps {
   message: string;
 }
 
-import { Resend } from "resend";
+const getResendClient = () => {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) return null;
+  return new Resend(key);
+};
 
 export async function sendLeadNotificationEmail(data: LeadEmailProps) {
   const to = process.env.NOTIFICATION_EMAIL ?? "contato@dradaniellylubian.com.br";
   const resend = getResendClient();
+
+  console.log("📧 [EMAIL] Iniciando envio de notificação...");
+  console.log("📧 [EMAIL] Destinatário:", to);
+  console.log("📧 [EMAIL] RESEND_API_KEY presente:", !!process.env.RESEND_API_KEY);
 
   if (!resend) {
     console.warn("⚠️  RESEND_API_KEY não configurada — e-mail de notificação ignorado.");
     return;
   }
 
-  const { error } = await resend.emails.send({
-    // Free tier: use onboarding@resend.dev until a custom domain is verified at resend.com/domains
-    // After domain verification, change to: "Pré-Consulta <noreply@dradaniellylubian.com.br>"
-    from: "onboarding@resend.dev",
-    to,
-    subject: `📋 Nova Pré-Consulta: ${data.name} (${data.objective})`,
-    html: buildEmailHtml(data),
-  });
+  try {
+    const { data: result, error } = await resend.emails.send({
+      from: "onboarding@resend.dev",
+      to,
+      subject: `📋 Nova Pré-Consulta: ${data.name} (${data.objective})`,
+      html: buildEmailHtml(data),
+    });
 
-  if (error) {
-    console.error("Erro ao enviar e-mail de notificação:", error);
+    if (error) {
+      console.error("❌ [EMAIL] Erro ao enviar:", JSON.stringify(error, null, 2));
+    } else {
+      console.log("✅ [EMAIL] Enviado com sucesso! ID:", result?.id);
+    }
+  } catch (err) {
+    console.error("❌ [EMAIL] Exceção inesperada:", err);
   }
 }
 
 function buildEmailHtml(data: LeadEmailProps): string {
-  // Convert markdown-like text to basic HTML
   const formattedMessage = data.message
     .replace(/^# (.+)$/gm, "<h2 style='color:#8F4D30;margin-top:24px;margin-bottom:8px;font-family:Georgia,serif'>$1</h2>")
     .replace(/^## (.+)$/gm, "<h3 style='color:#6b3d24;margin-top:16px;margin-bottom:6px;font-family:Georgia,serif'>$1</h3>")

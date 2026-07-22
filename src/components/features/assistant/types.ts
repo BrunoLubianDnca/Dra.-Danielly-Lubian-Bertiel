@@ -18,12 +18,12 @@ export const defaultChatConfig: ChatConfig = {
   assistantName: "Atendimento Dra. Danielly",
   assistantRole: "Recepção",
   whatsappNumber: "554788397897",
-  welcomeMessage: "Olá! Seja bem-vindo(a). 👋\n\nÉ um prazer receber você.\n\nAntes de prosseguirmos, preciso de algumas informações para direcionar seu atendimento da melhor forma.\n\nComo posso chamar você?",
+  welcomeMessage: "Olá! Seja bem-vindo(a) ao consultório da Dra. Danielly. 👋\n\nPara direcionar seu atendimento da melhor forma, preciso de algumas informações rápidas.",
   steps: [
     {
       id: "nome",
       type: "text",
-      question: "",
+      question: "Como posso chamar você?",
       placeholder: "Seu nome...",
     },
     {
