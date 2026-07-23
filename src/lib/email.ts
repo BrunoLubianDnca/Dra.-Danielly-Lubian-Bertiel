@@ -29,7 +29,7 @@ export async function sendLeadNotificationEmail(data: LeadEmailProps) {
 
   try {
     const { data: result, error } = await resend.emails.send({
-      from: "onboarding@resend.dev",
+      from: "Dra. Danielly Lubian <contato@dradaniellylubian.com.br>",
       to,
       subject: `📋 Nova Pré-Consulta: ${data.name} (${data.objective})`,
       html: buildEmailHtml(data),
